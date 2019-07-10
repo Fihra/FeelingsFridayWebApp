@@ -1,5 +1,4 @@
-'using strict'
-
+"use strict";
 const usersURL = "http://localhost:3000/users";
 const feelingsURL = "http://localhost:3000/feelings";
 
@@ -53,14 +52,13 @@ function showOneUser(user, feelings){
         let feelingContent = document.createElement("p");
         let likes = document.createElement("p");
         let likeButton = document.createElement("button");
-        likeButton.setAttribute("id", "like-btn")
+        //changed like-btn to like-btn-$feelings[i].id
+        //becuse id is unique
+        likeButton.setAttribute("id", `like-btn-${feelings[i].id}`)
         likeButton.textContent = "Likes"
 
         feelingContent.textContent = feelings[i].content;
-        // likes.textContent = `${likeButton}: ${feelings[i].likes}`;
         likes.textContent = `${feelings[i].likes} `
-
-
 
         likeButton.addEventListener('click', ()=>{
           likeFeels(feelings[i], likes, user)
@@ -74,12 +72,10 @@ function showOneUser(user, feelings){
 }
 
 function likeFeels(feeling, likeDisplay, user){
-  let likebtn = document.getElementById('like-btn')
+  let likebtn = document.getElementById(`like-btn-${feeling.id}`)
   feeling.likes++
-  // console.log(like)
   likeDisplay.textContent = feeling.likes
   likeDisplay.appendChild(likebtn)
-// console.log(feeling.id,feeling.likes)
   fetch(feelingsURL + "/" + feeling.id,{
    method: "PATCH",
    headers: {
@@ -118,7 +114,6 @@ function newUser(){
     .then(resp => resp.json())
     .then(json => newFeeling(json, feels))
 }
-//newFeeling(json, form.feels.value)
 
 function newFeeling(newUser, feels){
     console.log(newUser, feels);
