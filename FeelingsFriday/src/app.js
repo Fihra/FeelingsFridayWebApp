@@ -31,16 +31,24 @@ function fetchAllOfTheFeels(){
 }
 
 function showOneUser(user, feelings){
-    console.log(feelings);
     const card = document.getElementById("user-card");
+    card.setAttribute("class", "card");
+
     let name = document.createElement("h2");
+    name.setAttribute("class", "name");
+
     let mood = document.createElement("h3");
+    mood.setAttribute("class", "mood");
+
     let passBtn = document.createElement("button");
     passBtn.textContent = "Pass";
+    passBtn.setAttribute("class", "pass-btn");
+
     name.textContent = user.name;
     mood.textContent = `Current Mood: ${user.currentMood}`;
 
     let feelingDiv = document.createElement("div");
+    feelingDiv.setAttribute("class", "feeling-div");
 
     card.appendChild(name);
     card.appendChild(mood);
@@ -50,12 +58,21 @@ function showOneUser(user, feelings){
     for(let i=0; i < feelings.length; i++){
 
         let feelingContent = document.createElement("p");
+        feelingContent.setAttribute("class", "feelingContent");
+
         let likes = document.createElement("p");
+        likes.setAttribute("class", "likes");
+
         let likeButton = document.createElement("button");
+        likeButton.setAttribute("class", "like-button");
+
+        let commentsDiv = document.createElement("div");
+        commentsDiv.setAttribute("class", "comments-div");
+
         //changed like-btn to like-btn-$feelings[i].id
         //becuse id is unique
         likeButton.setAttribute("id", `like-btn-${feelings[i].id}`)
-        likeButton.textContent = "Likes"
+        likeButton.textContent = "Likes";
 
         feelingContent.textContent = feelings[i].content;
         likes.textContent = `${feelings[i].likes} `
@@ -69,6 +86,10 @@ function showOneUser(user, feelings){
 
         card.appendChild(feelingDiv);
     }
+}
+
+function commenting(){
+
 }
 
 function likeFeels(feeling, likeDisplay, user){
@@ -130,7 +151,7 @@ function newFeeling(newUser, feels){
         })
     })
     .then(resp => resp.json())
-    .then(json => console.log(json))
+    .then(json => (json))
 
 }
 
