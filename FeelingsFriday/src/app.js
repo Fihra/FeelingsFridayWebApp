@@ -63,8 +63,7 @@ function showOneUser(user, feelings){
 
 
         likeButton.addEventListener('click', ()=>{
-          // debugger;
-          likeFeels(feelings[i], likes)
+          likeFeels(feelings[i], likes, user)
         })
         likes.appendChild(likeButton)
         feelingContent.appendChild(likes);
@@ -74,7 +73,7 @@ function showOneUser(user, feelings){
     }
 }
 
-function likeFeels(feeling, likeDisplay){
+function likeFeels(feeling, likeDisplay, user){
   let likebtn = document.getElementById('like-btn')
   feeling.likes++
   // console.log(like)
@@ -93,7 +92,7 @@ function likeFeels(feeling, likeDisplay){
      })
    })
   .then(res=>res.json())
-  .then(json=>console.log(json))
+  .then(json=> console.log(json))
 }
 
 form.addEventListener("submit", () => {
