@@ -7,6 +7,11 @@ class UsersController < ApplicationController
         render json: users
     end 
 
+    def user_feelings
+        user = User.find(params[:id])
+        render json: user.feelings
+    end
+
     def new
         user = User.new
     end
@@ -14,6 +19,7 @@ class UsersController < ApplicationController
     def create
         # byebug
         user = User.new(user_params)
+        
         user.save
         render json: user
     end

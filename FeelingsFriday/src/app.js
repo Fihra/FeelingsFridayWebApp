@@ -1,6 +1,7 @@
 'using strict'
 
 const usersURL = "http://localhost:3000/users";
+const feelingsURL = "http://localhost:3000/feelings";
 
 const list = document.getElementById("user-list");
 
@@ -14,19 +15,33 @@ function fetchUsers(){
 
 function displayUsers(users){
     users.forEach(user => {
-        showOneUser(user);
+        getFeels(user);
     })
 }
 
-function showOneUser(user){
+function getFeels(user) {
+    fetch(`http://localhost:3000/user_feelings/${user.id}`)
+    .then(res => res.json())
+    .then(json => showOneUser(user, json))
+}
+
+function showOneUser(user, feelings){
+    console.log(feelings);
     const card = document.getElementById("user-card");
     let name = document.createElement("h2");
     let mood = document.createElement("h3");
+    let likeButton = document.createElement("button");
+    let likes = document.createElement("p");
     name.textContent = user.name;
     mood.textContent = `Current Mood: ${user.currentMood}`;
 
+    likes.textContent = feelings.likes;
+    likeButton.textContent = `Like: ${feelings.likes}`;
+    likeButton.appendChild(likes);
+
     card.appendChild(name);
     card.appendChild(mood);
+    card.appendChild(likeButton);
     list.appendChild(card);
 
     console.log(user);
