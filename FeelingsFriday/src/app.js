@@ -10,7 +10,7 @@ const form = document.getElementById("new-form");
 function fetchUsers(){
     fetch(usersURL)
     .then(resp => resp.json())
-    .then(json => displayUsers(json))   
+    .then(json => displayUsers(json))
 }
 
 function displayUsers(users){
@@ -49,19 +49,51 @@ function showOneUser(user, feelings){
     list.appendChild(card);
 
     for(let i=0; i < feelings.length; i++){
-        
+
         let feelingContent = document.createElement("p");
         let likes = document.createElement("p");
         let likeButton = document.createElement("button");
+        likeButton.setAttribute("id", "like-btn")
         likeButton.textContent = "Likes"
 
         feelingContent.textContent = feelings[i].content;
-        likes.textContent = `${likeButton}: ${feelings[i].likes}`;
-        
+        // likes.textContent = `${likeButton}: ${feelings[i].likes}`;
+        likes.textContent = `${feelings[i].likes} `
+
+
+
+        likeButton.addEventListener('click', ()=>{
+          // debugger;
+          likeFeels(feelings[i], likes)
+        })
+        likes.appendChild(likeButton)
         feelingContent.appendChild(likes);
         feelingDiv.appendChild(feelingContent);
+
         card.appendChild(feelingDiv);
     }
+}
+
+function likeFeels(feeling, likeDisplay){
+  let likebtn = document.getElementById('like-btn')
+  feeling.likes++
+  // console.log(like)
+  likeDisplay.textContent = feeling.likes
+  likeDisplay.appendChild(likebtn)
+// console.log(feeling.id,feeling.likes)
+  fetch(feelingsURL + "/" + feeling.id,{
+   method: "PATCH",
+   headers: {
+     'Content-Type': 'application/json',
+     'Accept': 'application/json'
+   },
+   body:
+     JSON.stringify({
+       likes: feeling.likes
+     })
+   })
+  .then(res=>res.json())
+  .then(json=>console.log(json))
 }
 
 form.addEventListener("submit", () => {
@@ -105,7 +137,7 @@ function newFeeling(newUser, feels){
     })
     .then(resp => resp.json())
     .then(json => console.log(json))
-    
+
 }
 
 fetchUsers();
