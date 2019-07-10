@@ -25,24 +25,43 @@ function getFeels(user) {
     .then(json => showOneUser(user, json))
 }
 
+function fetchAllOfTheFeels(){
+    fetch(feelingsURL)
+    .then(resp => resp.json())
+    .then(json => console.log(json))
+}
+
 function showOneUser(user, feelings){
-    //console.log(feelings);
+    console.log(feelings);
     const card = document.getElementById("user-card");
     let name = document.createElement("h2");
     let mood = document.createElement("h3");
-    let likeButton = document.createElement("button");
-    let likes = document.createElement("p");
+    let passBtn = document.createElement("button");
+    passBtn.textContent = "Pass";
     name.textContent = user.name;
     mood.textContent = `Current Mood: ${user.currentMood}`;
 
-    likes.textContent = feelings.likes;
-    likeButton.textContent = `Like: ${feelings.likes}`;
-    likeButton.appendChild(likes);
+    let feelingDiv = document.createElement("div");
 
     card.appendChild(name);
     card.appendChild(mood);
-    card.appendChild(likeButton);
+    card.appendChild(passBtn);
     list.appendChild(card);
+
+    for(let i=0; i < feelings.length; i++){
+        
+        let feelingContent = document.createElement("p");
+        let likes = document.createElement("p");
+        let likeButton = document.createElement("button");
+        likeButton.textContent = "Likes"
+
+        feelingContent.textContent = feelings[i].content;
+        likes.textContent = `${likeButton}: ${feelings[i].likes}`;
+        
+        feelingContent.appendChild(likes);
+        feelingDiv.appendChild(feelingContent);
+        card.appendChild(feelingDiv);
+    }
 }
 
 form.addEventListener("submit", () => {
