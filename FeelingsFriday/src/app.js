@@ -31,6 +31,9 @@ function fetchAllOfTheFeels(){
 }
 
 function showOneUser(user, feelings){
+    let hr = document.createElement("hr");
+    hr.setAttribute("class", "hr-line");
+
     const card = document.getElementById("user-card");
     card.setAttribute("class", "card");
 
@@ -45,14 +48,16 @@ function showOneUser(user, feelings){
     passBtn.setAttribute("class", "pass-btn");
 
     name.textContent = user.name;
-    mood.textContent = `Current Mood: ${user.currentMood}`;
+    mood.textContent = `Mood of the Day: ${user.currentMood}`;
 
     let feelingDiv = document.createElement("div");
     feelingDiv.setAttribute("class", "feeling-div");
-
-    card.appendChild(name);
+    hr.appendChild(name);
+    card.appendChild(hr);
     card.appendChild(mood);
     card.appendChild(passBtn);
+  
+
     list.appendChild(card);
 
     for(let i=0; i < feelings.length; i++){
@@ -72,10 +77,10 @@ function showOneUser(user, feelings){
         //changed like-btn to like-btn-$feelings[i].id
         //becuse id is unique
         likeButton.setAttribute("id", `like-btn-${feelings[i].id}`)
-        likeButton.textContent = "Likes";
+        likeButton.textContent = "CLAP";
 
         feelingContent.textContent = feelings[i].content;
-        likes.textContent = `${feelings[i].likes} `
+        likes.textContent = `CLAPS: ${feelings[i].likes} `
 
         likeButton.addEventListener('click', ()=>{
           likeFeels(feelings[i], likes, user)
@@ -83,9 +88,9 @@ function showOneUser(user, feelings){
         likes.appendChild(likeButton)
         feelingContent.appendChild(likes);
         feelingDiv.appendChild(feelingContent);
-
         card.appendChild(feelingDiv);
     }
+
 }
 
 function commenting(){
@@ -95,7 +100,7 @@ function commenting(){
 function likeFeels(feeling, likeDisplay, user){
   let likebtn = document.getElementById(`like-btn-${feeling.id}`)
   feeling.likes++
-  likeDisplay.textContent = feeling.likes
+  likeDisplay.textContent = `CLAPS: ${feeling.likes}`
   likeDisplay.appendChild(likebtn)
   fetch(feelingsURL + "/" + feeling.id,{
    method: "PATCH",

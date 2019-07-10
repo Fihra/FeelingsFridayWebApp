@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <head>
     <title>Feelings Friday</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-            <h1 class="feel-friday">Feelings Friday</h1>
+    <div class="feel-friday">
+            <div class = "text-area">
+                <span>F</span>
+                <span>e</span>
+                <span>e</span>
+                <span>l</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <span>s</span>&nbsp;
+                <span>F</span>
+                <span>r</span>
+                <span>i</span>
+                <span>d</span>
+                <span>a</span>
+                <span>y</span>
+            </div>
+            <!-- <h1 class="feel-friday">Feelings Friday</h1> -->
+    </div>
+    <div class="full-content">
+    <div id="clouds">
+            <div class="cloud x1"></div>
+    <div class="cloud x2"></div>
+    <h2>Add Some Feels</h2>
+    <div class="form">
+        <form id="new-form" class="style-form">
+            <input type="text" name="name" placeholder="Name">
+            <select name="mood">
+                <option value="bliss">Bliss</option>
+                    <option value="despair">Despair</option>
+                    <option value="angry">Angry</option>
+                    <option value="hungry">Hungry</option>
+                    <option value="hangry">Hangry</option>
+                    <option value="meh">Meh</option>
+            </select>
+            <textarea rows="4" cols="50" name="feels" placeholder="How's your Friday?"></textarea>
+            <!-- <input type="textarea" rows="10" cols="25" name="feels" placeholder="How's your Friday?">     -->
+            <input type="submit" value="Ya Feel Me">
+        </form>
     </div>
         <div id="container">
             <ul id="user-list">
@@ -14,22 +52,10 @@
                 </div>
             </ul>
         </div>
-    
-    <h2>Add Some Feels</h2>
-    <div class="form">
-        <form id="new-form">
-            <input type="text" name="name" placeholder="name">
-            <select name="mood">
-                <option value="happy">Happy</option>
-                    <option value="sad">Sad</option>
-                    <option value="mad">Mad</option>
-                    <option value="hungry">Hungry</option>
-            </select>
-            <input type="textarea" rows="10" cols="25" name="feels" placeholder="How are you today?">    
-            <input type="submit" value="Add Me">
-        </form>
+        <div class="cloud x3"></div>
+ 
     </div>
-
     <script src="./src/app.js"></script>
+</div>
 </body>
 </html>
