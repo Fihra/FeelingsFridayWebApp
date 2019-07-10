@@ -1,6 +1,13 @@
 class FeelingsController < ApplicationController
+    def index
+        feelings = Feeling.all
+        users = User.all
+        render json: feelings
+    end
+
     def new
         feeling = Feeling.new
+
     end
 
     def create

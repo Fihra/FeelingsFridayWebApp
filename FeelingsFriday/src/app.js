@@ -26,7 +26,7 @@ function getFeels(user) {
 }
 
 function showOneUser(user, feelings){
-    console.log(feelings);
+    //console.log(feelings);
     const card = document.getElementById("user-card");
     let name = document.createElement("h2");
     let mood = document.createElement("h3");
@@ -43,8 +43,6 @@ function showOneUser(user, feelings){
     card.appendChild(mood);
     card.appendChild(likeButton);
     list.appendChild(card);
-
-    console.log(user);
 }
 
 form.addEventListener("submit", () => {
@@ -54,8 +52,8 @@ form.addEventListener("submit", () => {
 
 function newUser(){
     event.preventDefault();
-    //form.name.value
-    //form.mood.value
+    let feels = form.feels.value
+    console.log("feelings input: ", form.feels.value)
     fetch(usersURL, {
         method: "POST",
         headers: {
@@ -68,7 +66,27 @@ function newUser(){
         })
     })
     .then(resp => resp.json())
+    .then(json => newFeeling(json, feels))
+}
+//newFeeling(json, form.feels.value)
+
+function newFeeling(newUser, feels){
+    console.log(newUser, feels);
+    fetch(feelingsURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: newUser.id,
+            content: feels,
+            likes: 0
+        })
+    })
+    .then(resp => resp.json())
     .then(json => console.log(json))
+    
 }
 
 fetchUsers();
