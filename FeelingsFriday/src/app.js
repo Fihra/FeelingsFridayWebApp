@@ -57,7 +57,6 @@ function showOneUser(user, feelings){
     card.appendChild(mood);
     card.appendChild(passBtn);
   
-
     list.appendChild(card);
 
     for(let i=0; i < feelings.length; i++){
