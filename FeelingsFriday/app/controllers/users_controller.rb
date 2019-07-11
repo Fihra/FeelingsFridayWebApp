@@ -18,9 +18,11 @@ class UsersController < ApplicationController
 
     def create
         # byebug
-        user = User.new(user_params)
-        
-        user.save
+        user = User.find_by(name: params[:name])
+        if !user
+            user = User.new(user_params)
+            user.save
+        end
         render json: user
     end
 
