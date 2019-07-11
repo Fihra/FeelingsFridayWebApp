@@ -81,6 +81,7 @@ function showOneUser(user, feelings){
         feelingContent.textContent = feelings[i].content;
         likes.textContent = `CLAPS: ${feelings[i].likes} `
 
+        //Clicking the CLAP Button
         likeButton.addEventListener('click', ()=>{
           likeFeels(feelings[i], likes, user)
         })
@@ -116,8 +117,13 @@ function likeFeels(feeling, likeDisplay, user){
   .then(json=> console.log(json))
 }
 
+//NEW FEELING FORM
 form.addEventListener("submit", () => {
-    newUser();
+    debugger;
+    // if(form.name.value == ""){
+
+    // }else if(form.name.value == )
+    //newUser();
     form.reset();
 })
 
@@ -138,6 +144,10 @@ function newUser(){
     })
     .then(resp => resp.json())
     .then(json => newFeeling(json, feels))
+}
+
+function newFeelingInstead(){
+
 }
 
 function newFeeling(newUser, feels){
