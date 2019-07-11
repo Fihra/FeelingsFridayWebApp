@@ -17,14 +17,17 @@ class UsersController < ApplicationController
     end
 
     def create
-        # byebug
-        user = User.find_by(name: params[:name])
+        #byebug
+        user = User.find_by(name: params[:name].capitalize)
         if !user
+            #byebug
             user = User.new(user_params)
             user.save
         end
         render json: user
     end
+
+    private 
 
     def user_params
         params.require(:user).permit(:name, :currentMood)

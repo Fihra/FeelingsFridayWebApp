@@ -10,14 +10,14 @@ User.destroy_all
 Feeling.destroy_all
 Comment.destroy_all
 
-u1 = User.create(name: "Bob", currentMood: "Angry")
-u2 = User.create(name: "Jane", currentMood: "Happy")
-u3 = User.create(name: "Jerry", currentMood: "Sad" )
+u1 = User.create(name: "Tary", currentMood: "Angry")
+u2 = User.create(name: "Feebee", currentMood: "Bliss")
+u3 = User.create(name: "Mar", currentMood: "Depair" )
 
-feels1 = Feeling.create(content: "I am mad today.", likes: 3, user: u1)
-feels2 = Feeling.create(content: "Had a code challenge today", likes: 45, user: u1)
-feels3 = Feeling.create(content: "I am happy today.", likes: 10, user: u2)
-feels4 = Feeling.create(content: "I am sad today.", likes: 6, user: u3)
+feels1 = Feeling.create(content: "I am mad today!!!!!", likes: 3, user: u1)
+feels2 = Feeling.create(content: "I had a code challenge this week.", likes: 45, user: u1)
+feels3 = Feeling.create(content: "Yay!! I'm Happy. I saw puppers and Doggos <3<3<3", likes: 10, user: u2)
+feels4 = Feeling.create(content: "I sad.", likes: 6, user: u3)
 
 comment1 = Comment.create(content: "Awww" , user: u2, feeling: feels4)
 comment2 = Comment.create(content: "That's rough" , user: u3, feeling: feels2)

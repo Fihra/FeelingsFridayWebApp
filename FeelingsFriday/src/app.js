@@ -117,9 +117,6 @@ function likeFeels(feeling, likeDisplay, user){
   .then(json=> console.log(json))
 }
 
-// document.getElementById('pop_up').innerHTML="Enter your name";
-//         document.getElementById('uname').focus();
-
 //NEW FEELING FORM
 form.addEventListener("submit", () => {
     event.preventDefault();
@@ -195,7 +192,7 @@ function newFeeling(newUser, feels){
         })
     })
     .then(resp => resp.json())
-    .then(json => (json))
+    .then(json => console.log(json))
 
 }
 
