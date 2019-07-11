@@ -30,7 +30,9 @@
     <div class="cloud x2"></div>
     <h2>Add Some Feels</h2>
     <div class="form">
+        <div id="name-feeling-error"></div>
         <form id="new-form" class="style-form">
+            <div id="name-error"></div>
             <input type="text" name="name" placeholder="Name">
             <select name="mood">
                 <option value="bliss">Bliss</option>
@@ -40,6 +42,7 @@
                     <option value="hangry">Hangry</option>
                     <option value="meh">Meh</option>
             </select>
+            <div id="feeling-error"></div>
             <textarea rows="4" cols="50" name="feels" placeholder="How's your Friday?"></textarea>
             <!-- <input type="textarea" rows="10" cols="25" name="feels" placeholder="How's your Friday?">     -->
             <input type="submit" value="Ya Feel Me">

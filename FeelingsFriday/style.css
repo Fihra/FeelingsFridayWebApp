@@ -2,6 +2,32 @@
     background-color: whitesmoke;
 }
 
+.hr-line{
+	padding: 10px;
+	width: 45%;
+}
+
+.card, .comments-div{
+	text-align: center;
+}
+
+h2, h3, p {
+	font-family: Rockwell;
+	color: whitesmoke;
+}
+
+.hidden {
+	display: none;
+}
+
+.errorMessage{
+	color: grey;
+	font-weight: bold;
+	font-family: Rockwell;
+}
+
+/*For the New Feels Form Styling */
+
 .style-form{
 	padding: 10px;
 	margin: 10px;
@@ -25,19 +51,9 @@ select::-ms-expand {
 	display: none;
 }
 
-.hr-line{
-	padding: 10px;
-	width: 45%;
-}
+/*------------------------------------------------*/
 
-.card, .comments-div{
-	text-align: center;
-}
-
-h2, h3, p {
-	font-family: Rockwell;
-	color: whitesmoke;
-}
+/* For all the buttons and Form Input Button CSS*/
 
 button, input[type=submit]  {
 		cursor: pointer;
@@ -78,14 +94,9 @@ button:active {
 	position:relative;
 	top:1px;
 }
+/*---------------------------------------------*/
 
-
-.feel-friday{
-	/* position: absolute; */
-	/* top: 40%; */
-	/* left: 67%; */
-	/* transform: translate(-50%, -50%); */
-}
+/* Feelings Friday Title Animation*/
 .text-area{
 	text-align: center;
 	font-size: 72px;
@@ -154,35 +165,13 @@ button:active {
 	}
 }
 
+/*--------------------------------------*/
+
 body{
     background-color: lightblue;
-    /* overflow: hidden; */
 }
 
-.feelingContent{
-	/* border-style: solid;
-	border-color: white;
-	padding: 10px;
-	width: 50px;
-	height: 90px; */
-}
-
-.name{
-	/* border-style: dashed;
-	padding: 50px;
-	margin: 20px;
-	height: 40px;
-	width:  100px; */
-	
-}
-
-.clouds{
-
-    /* background: #c9dbe9; */
-    /* background: -webkit-linear-gradient(top, #c9dbe9 0%,  #fff 100%); */
-    /* background:  -linear-gradient(top, #c9dbe9 0%, #fff  100%); */
-
-}
+/*For Clouds Animation */
 
 .cloud{
     width: 200px;
@@ -292,3 +281,4 @@ body{
 	0% {margin-left: 1000px;}
 	100% {margin-left: -1000px;}
 }
+/*-------------------------------------------*/

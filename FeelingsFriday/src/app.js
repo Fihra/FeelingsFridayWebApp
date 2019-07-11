@@ -117,14 +117,44 @@ function likeFeels(feeling, likeDisplay, user){
   .then(json=> console.log(json))
 }
 
+// document.getElementById('pop_up').innerHTML="Enter your name";
+//         document.getElementById('uname').focus();
+
 //NEW FEELING FORM
 form.addEventListener("submit", () => {
-    debugger;
-    // if(form.name.value == ""){
+    event.preventDefault();
+    let nameError = document.getElementById("name-error");
+    nameError.setAttribute("class", "errorMessage hidden");
+    nameError.textContent = "Please enter a name";
 
-    // }else if(form.name.value == )
-    //newUser();
-    form.reset();
+    let feelingError = document.getElementById("feeling-error");
+    feelingError.setAttribute("class", "errorMessage hidden");
+    feelingError.textContent = "No fewer than 3 characters";
+
+    let nameAndFeelingError = document.getElementById("name-feeling-error");
+    nameAndFeelingError.setAttribute("class", "errorMessage hidden");
+    nameAndFeelingError.textContent = "No Name, No Feeling";
+
+    if(form.name.value == "" && form.feels.value.length == 0){//No Name, No Feelings
+        nameAndFeelingError.classList.remove("hidden");
+        console.log("No Name, No Feeling");
+    }
+    else if(form.name.value == "" && (form.feels.value.length >= 1 && form.feels.value.length < 3)  ){//Name is Error and Feelings is not enough characters Error
+        nameError.classList.remove("hidden");
+        feelingError.classList.remove("hidden");
+    }
+    else if(form.name.value == "" && form.feels.value.length > 3 ){//Name is the Error //IS WORKING
+        nameError.classList.remove("hidden");
+    }
+    else if(form.name.value && form.feels.value.length < 3){//Feelings is the Error //NOT WORKING
+        feelingError.classList.remove("hidden");
+        console.log("Feelings content is less than 3 characters");
+    }
+    else if(form.name.value && form.feels.value.length > 3){
+        console.log("valid input");
+        newUser();
+        form.reset();
+    } 
 })
 
 function newUser(){
