@@ -135,18 +135,18 @@ form.addEventListener("submit", () => {
     nameAndFeelingError.setAttribute("class", "errorMessage hidden");
     nameAndFeelingError.textContent = "No Name, No Feeling";
 
-    if(form.name.value == "" && form.feels.value.length == 0){//No Name, No Feelings
+    if(form.name.value == "" && form.feels.value.length == 0){//No Name, No Feelings //IS WORKING
         nameAndFeelingError.classList.remove("hidden");
         console.log("No Name, No Feeling");
     }
-    else if(form.name.value == "" && (form.feels.value.length >= 1 && form.feels.value.length < 3)  ){//Name is Error and Feelings is not enough characters Error
+    else if(form.name.value == "" && (form.feels.value.length >= 1 && form.feels.value.length < 3)  ){//Name is Error and Feelings is not enough characters Error //IS WORKING
         nameError.classList.remove("hidden");
         feelingError.classList.remove("hidden");
     }
     else if(form.name.value == "" && form.feels.value.length > 3 ){//Name is the Error //IS WORKING
         nameError.classList.remove("hidden");
     }
-    else if(form.name.value && form.feels.value.length < 3){//Feelings is the Error //NOT WORKING
+    else if(form.name.value && form.feels.value.length < 3){//Feelings is the Error //IS WORKING
         feelingError.classList.remove("hidden");
         console.log("Feelings content is less than 3 characters");
     }
