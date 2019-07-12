@@ -3,6 +3,7 @@ const usersURL = "http://localhost:3000/users";
 const feelingsURL = "http://localhost:3000/feelings";
 const commentsURL = "http://localhost:3000/comments"
 
+// let feelingDiv = document.createElement("div");
 
 let addComment = false
 
@@ -11,6 +12,9 @@ const list = document.getElementById("user-list");
 const form = document.getElementById("new-form");
 
 const addCommentForm = document.querySelector('.comment')
+
+// const card = document.getElementById("user-card");
+// card.setAttribute("class", "card");
 
 function fetchUsers(){
     fetch(usersURL)
@@ -64,6 +68,7 @@ function showOneUser(user, feelings){
 
     let feelingDiv = document.createElement("div");
     feelingDiv.setAttribute("class", "feeling-div");
+
     hr.appendChild(name);
     card.appendChild(hr);
     card.appendChild(mood);
@@ -76,14 +81,16 @@ function showOneUser(user, feelings){
         let feelingContent = document.createElement("p");
         feelingContent.setAttribute("class", "feelingContent");
 
+        let feelingDate = document.createElement("p");
+        feelingDate.setAttribute("class", "feelingDate");
+        feelingDate.textContent = feelings[i].created_at
+        feelingDiv.appendChild(feelingDate)
+
         let likes = document.createElement("p");
         likes.setAttribute("class", "likes");
 
         let likeButton = document.createElement("button");
         likeButton.setAttribute("class", "like-button");
-
-        let commentsDiv = document.createElement("div");
-        commentsDiv.setAttribute("class", "comments-div");
 
         //changed like-btn to like-btn-$feelings[i].id
         //becuse id is unique
@@ -218,8 +225,25 @@ function newFeeling(newUser, feels){
 
 function displayComments(comments){
   comments.forEach(comment => {
-    
+      displaySingleComment(comment)
+
   })
+}
+
+function displaySingleComment(comment){
+
+  let commentDiv = document.createElement("div");
+
+  const newComment = document.createElement('h2')
+  newComment.textContent = comment.content
+  // console.log(newComment)
+
+  // commentDiv.setAttribute("class", "comment-div");
+    commentDiv.appendChild(newComment)
+    console.log(commentDiv)
+    // window.body.appendChild(commentDiv)
+    // card.appendChild(feelingDiv)
+
 }
 
 //hide new user data entry form and display add a comment form
@@ -241,11 +265,9 @@ function addFeelingComment(commentButton){
 })
 
 function handleComments(){
-  let newComment = document.createElement("h3");
-  newComment.textContent = movie.title
+
 
 }
-
 
 fetchUsers();
 fetchComments()
