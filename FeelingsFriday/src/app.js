@@ -1,15 +1,27 @@
 "use strict";
 const usersURL = "http://localhost:3000/users";
 const feelingsURL = "http://localhost:3000/feelings";
+const commentsURL = "http://localhost:3000/comments"
+
+
+let addComment = false
 
 const list = document.getElementById("user-list");
 
 const form = document.getElementById("new-form");
 
+const addCommentForm = document.querySelector('.comment')
+
 function fetchUsers(){
     fetch(usersURL)
     .then(resp => resp.json())
     .then(json => displayUsers(json))
+}
+
+function fetchComments(){
+    fetch(commentsURL)
+    .then(resp => resp.json())
+    .then(json => displayComments(json))
 }
 
 function displayUsers(users){
@@ -56,7 +68,7 @@ function showOneUser(user, feelings){
     card.appendChild(hr);
     card.appendChild(mood);
     card.appendChild(passBtn);
-  
+
     list.appendChild(card);
 
     for(let i=0; i < feelings.length; i++){
@@ -88,12 +100,16 @@ function showOneUser(user, feelings){
         likes.appendChild(likeButton)
         feelingContent.appendChild(likes);
         feelingDiv.appendChild(feelingContent);
+
+        let commentButton = document.createElement("button");
+        commentButton.setAttribute("class", "comment-btn")
+        commentButton.textContent = "Have something to say about this feeling?"
+        feelingDiv.appendChild(commentButton)
+
         card.appendChild(feelingDiv);
+
+        addFeelingComment(commentButton)
     }
-
-}
-
-function commenting(){
 
 }
 
@@ -135,6 +151,7 @@ form.addEventListener("submit", () => {
     nameAndFeelingError.setAttribute("class", "errorMessage hidden");
     nameAndFeelingError.textContent = "No Name, No Feeling";
 
+
     if(form.name.value == "" && form.feels.value.length == 0){//No Name, No Feelings //IS WORKING
         nameAndFeelingError.classList.remove("hidden");
         console.log("No Name, No Feeling");
@@ -154,7 +171,7 @@ form.addEventListener("submit", () => {
         console.log("valid input");
         newUser();
         form.reset();
-    } 
+    }
 })
 
 function newUser(){
@@ -199,4 +216,36 @@ function newFeeling(newUser, feels){
 
 }
 
+function displayComments(comments){
+  comments.forEach(comment => {
+    
+  })
+}
+
+//hide new user data entry form and display add a comment form
+function addFeelingComment(commentButton){
+  commentButton.addEventListener('click', () => {
+  addComment = true
+  if (addComment) {
+    form.style.display = 'none'
+    addCommentForm.classList.remove('hidden')
+  }})
+}
+
+//on click of comment save button, hide btn, display comment
+  let saveBtn = document.getElementById("saveBtn") //saveBtn is defined in html file
+  saveBtn.addEventListener('click', () => {
+    form.style.display = 'block'
+    addCommentForm.classList.add('hidden')
+    handleComments()
+})
+
+function handleComments(){
+  let newComment = document.createElement("h3");
+  newComment.textContent = movie.title
+
+}
+
+
 fetchUsers();
+fetchComments()
