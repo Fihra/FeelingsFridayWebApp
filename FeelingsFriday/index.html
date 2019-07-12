@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
     <title>Feelings Friday</title>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,31 +33,33 @@
         <form id="new-form" class="style-form">
             <div id="name-error"></div>
             <input type="text" name="name" placeholder="Name">
-            <select name="mood">
+            <select name="mood" required>
                 <div id="mood-error"></div>
-                <option>--Select your Mood?--</option>
+                <option value="" disabled selected>--Select your Mood?--</option>
                 <option value="bliss">Bliss</option>
                     <option value="despair">Despair</option>
                     <option value="angry">Angry</option>
                     <option value="hungry">Hungry</option>
+                    <option value="calm">Calm</option>
+                    <option value="curious">Curious</option>
                     <option value="hangry">Hangry</option>
+                    <option value="excited">Excited</option>
+                    <option value="optimistic">Optimistic</option>
+                    <option value="pessimistic">Pessimistic</option>
+                    <option value="Giddy">Giddy</option>
                     <option value="meh">Meh</option>
             </select>
             <div id="feeling-error"></div>
-            <textarea rows="4" cols="50" name="feels" placeholder="How's your Friday?"></textarea>
-            <!-- <input type="textarea" rows="10" cols="25" name="feels" placeholder="How's your Friday?">     -->
+            <textarea rows="3" cols="30" name="feels" placeholder="How's your Friday?"></textarea>
             <input type="submit" value="Ya Feel Me">
         </form>
     </div>
         <div id="container">
             <div class="cloud x3"></div>
             <ul id="user-list">
-                <div id="user-card">
-                    
-                </div>
+
             </ul>
         </div>
-        <div class="cloud x4"></div>
  
     </div>
     <script src="./src/app.js"></script>

@@ -14,27 +14,16 @@ function fetchUsers(){
 
 function displayUsers(users){
     users.forEach(user => {
-        getFeels(user);
+        showOneUser(user);
     })
 }
 
-function getFeels(user) {
-    fetch(`http://localhost:3000/user_feelings/${user.id}`)
-    .then(res => res.json())
-    .then(json => showOneUser(user, json))
-}
-
-function fetchAllOfTheFeels(){
-    fetch(feelingsURL)
-    .then(resp => resp.json())
-    .then(json => console.log(json))
-}
-
-function showOneUser(user, feelings){
+function showOneUser(user){
     let hr = document.createElement("hr");
     hr.setAttribute("class", "hr-line");
 
-    const card = document.getElementById("user-card");
+    // const card = document.getElementById("user-card");
+    const card = document.createElement('div');
     card.setAttribute("class", "card");
 
     let name = document.createElement("h2");
@@ -50,16 +39,31 @@ function showOneUser(user, feelings){
     name.textContent = user.name;
     mood.textContent = `Mood of the Day: ${user.currentMood}`;
 
-    let feelingDiv = document.createElement("div");
-    feelingDiv.setAttribute("class", "feeling-div");
     hr.appendChild(name);
     card.appendChild(hr);
     card.appendChild(mood);
     card.appendChild(passBtn);
   
     list.appendChild(card);
+    //console.log(user, card);
+    getFeels(user, card);
+}
 
-    for(let i=0; i < feelings.length; i++){
+function getFeels(user, div) {
+    fetch(`http://localhost:3000/user_feelings/${user.id}`)
+    .then(res => res.json())
+    .then(json => showFeels(json, div))
+}
+
+function showFeels(myFeels, div){
+    //console.log(user, myFeels);
+    let feelingDiv = document.createElement("div");
+    feelingDiv.setAttribute("class", "feeling-div");
+
+    let card = document.createElement("li");
+    card.setAttribute("class", "card");
+
+       for(let i=0; i < myFeels.length; i++){
 
         let feelingContent = document.createElement("p");
         feelingContent.setAttribute("class", "feelingContent");
@@ -73,31 +77,37 @@ function showOneUser(user, feelings){
         let commentsDiv = document.createElement("div");
         commentsDiv.setAttribute("class", "comments-div");
 
-        //changed like-btn to like-btn-$feelings[i].id
+        //changed like-btn to like-btn-$myFeels[i].id
         //becuse id is unique
-        likeButton.setAttribute("id", `like-btn-${feelings[i].id}`)
+        likeButton.setAttribute("id", `like-btn-${myFeels[i].id}`)
         likeButton.textContent = "CLAP";
 
-        feelingContent.textContent = feelings[i].content;
-        likes.textContent = `CLAPS: ${feelings[i].likes} `
+        let clapDiv = document.createElement("div");
+        clapDiv.setAttribute("class", "clapping")
+
+        //likeButton.textContent = String.fromCodePoint("U+1F44F");
+        //
+        feelingContent.textContent = myFeels[i].content;
+        likes.textContent = `CLAPS: ${myFeels[i].likes} `
 
         //Clicking the CLAP Button
         likeButton.addEventListener('click', ()=>{
-          likeFeels(feelings[i], likes, user)
+          likeFeels(myFeels[i], likes)
         })
+        
         likes.appendChild(likeButton)
-        feelingContent.appendChild(likes);
+        feelingDiv.appendChild(likes);
         feelingDiv.appendChild(feelingContent);
         card.appendChild(feelingDiv);
+        div.appendChild(card);
     }
-
 }
 
 function commenting(){
 
 }
 
-function likeFeels(feeling, likeDisplay, user){
+function likeFeels(feeling, likeDisplay){
   let likebtn = document.getElementById(`like-btn-${feeling.id}`)
   feeling.likes++
   likeDisplay.textContent = `CLAPS: ${feeling.likes}`
@@ -156,6 +166,9 @@ form.addEventListener("submit", () => {
 
 function newUser(){
     event.preventDefault();
+    //if new user = create card with name, mood, and feeling
+    //if name input matches = change mood to new mood (if it is different), and add new feeling
+
     let feels = form.feels.value
     console.log("feelings input: ", form.feels.value)
     fetch(usersURL, {
@@ -170,7 +183,11 @@ function newUser(){
         })
     })
     .then(resp => resp.json())
-    .then(json => newFeeling(json, feels))
+    .then(json => {
+        
+        newFeeling(json, feels)
+        console.log(json, feels)
+    })
 }
 
 function newFeelingInstead(){
@@ -191,8 +208,8 @@ function newFeeling(newUser, feels){
             likes: 0
         })
     })
-    .then(resp => resp.json())
-    .then(json => console.log(json))
+    .then(showOneUser(newUser))
+    // .then(json => showOneUser(newUser))
 
 }
 

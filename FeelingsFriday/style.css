@@ -31,6 +31,14 @@ h2, h3, p {
 	font-family: Rockwell;
 }
 
+.clapping {
+	content: "👏";
+}
+
+.card{
+	list-style: none;
+}
+
 /*For the New Feels Form Styling */
 
 .style-form{
@@ -40,7 +48,14 @@ h2, h3, p {
 select, option, input[type=text]{
 	padding: 5px;
 	margin: 20px;
-  }
+}
+	
+select:required:invalid {
+		color: black;
+}
+option[value=""][disabled] {
+		display: none;
+}
 
 input[type=textarea]{
 	size: 120px;

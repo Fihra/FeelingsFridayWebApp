@@ -7,6 +7,7 @@ class UsersController < ApplicationController
         render json: users
     end 
 
+    #display feelings api
     def user_feelings
         user = User.find(params[:id])
         render json: user.feelings
@@ -24,6 +25,8 @@ class UsersController < ApplicationController
             user = User.new(user_params)
             user.save
         end
+        # userMood = user(currentMood: params[:currentMood])
+        # userMood.update
         render json: user
     end
 
