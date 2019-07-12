@@ -6,8 +6,8 @@ Versions
 - Ruby '2.6.1'
 
 Collaborators
-- Fabian Fabro
-- Laura Hoffman
+- Fabian Fabro (https://github.com/Fihra/)
+- Laura Hoffman (https://github.com/lhoffmanwg)
 
 Where to Fork
 https://github.com/Fihra/FeelingsFridayWebApp
