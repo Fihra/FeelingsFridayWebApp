@@ -13,18 +13,23 @@ function fetchUsers(){
 }
 
 function displayUsers(users){
+    while (list.firstChild) {
+        list.removeChild(list.firstChild)
+    }
     users.forEach(user => {
         showOneUser(user);
     })
 }
 
 function showOneUser(user){
+    console.log(user)
     let hr = document.createElement("hr");
     hr.setAttribute("class", "hr-line");
 
     // const card = document.getElementById("user-card");
     const card = document.createElement('div');
     card.setAttribute("class", "card");
+    // card.setAttribute('id', `usercard${user.id}`)
 
     let name = document.createElement("h2");
     name.setAttribute("class", "name");
@@ -208,7 +213,8 @@ function newFeeling(newUser, feels){
             likes: 0
         })
     })
-    .then(showOneUser(newUser))
+    .then(fetchUsers())
+    // .then(showOneUser(newUser))
     // .then(json => showOneUser(newUser))
 
 }

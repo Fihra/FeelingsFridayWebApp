@@ -18,15 +18,28 @@ class UsersController < ApplicationController
     end
 
     def create
-        #byebug
+        # byebug
         user = User.find_by(name: params[:name].capitalize)
         if !user
             #byebug
             user = User.new(user_params)
             user.save
         end
+        #byebug
+        if user.currentMood != params[:currentMood]
+            user.update(currentMood: params[:currentMood])
+        end
+
         # userMood = user(currentMood: params[:currentMood])
         # userMood.update
+        render json: user
+    end
+
+    def update
+        user = User.find_by(name: params[:name].capitalize)
+        user.currentMood = params[:currentMood]
+        #byebug
+        user.update(user.currentMood)
         render json: user
     end
 
